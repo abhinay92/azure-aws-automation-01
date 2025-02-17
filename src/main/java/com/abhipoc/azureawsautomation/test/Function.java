@@ -70,9 +70,7 @@ public class Function {
             System.setProperty("aws.region", "us-east-1");
             
             
-            AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("<ClientID>>", "<ClientSecret>");
-            
-            //AwsBasicCredentials awsCredentials = AwsBasicCredentials.create(accessKeyId, secretAccessKey);
+            AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("<ClientID>>", "<ClientSecret>");            
             SecurityHubClient shc = SecurityHubClient.builder().credentialsProvider(StaticCredentialsProvider.create(awsCredentials)).build();
             StringFilter strFilter = StringFilter.builder().comparison("EQUALS").value(findingId).build();
             Collection<StringFilter> strFilterList = new ArrayList<>();
