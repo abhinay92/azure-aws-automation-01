@@ -68,10 +68,7 @@ public class Function {
                 throw new MalformedURLException();
             } 
             System.setProperty("aws.region", "us-east-1");
-            // String accessKeyId = secretClient.getSecret("aws-security-account-iam-user-accessKeyId").getValue();
-            // context.getLogger().info(accessKeyId);
-            // String secretAccessKey = secretClient.getSecret("aws-security-account-iam-user-secretAccessKey").getValue(); 
-            // context.getLogger().info(secretAccessKey);
+            
             
             AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("<ClientID>>", "<ClientSecret>");
             
