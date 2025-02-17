@@ -94,14 +94,12 @@ public class Function {
                 responseObj.addProperty("Details", "This finding must have been closed from Security Hub directly");
             }
 
-            
             AwsSecurityFindingIdentifier awsSecurityFindingIdentifier = AwsSecurityFindingIdentifier.builder().id(findingId).productArn(productArn).build();
             Collection<AwsSecurityFindingIdentifier> awsSecurityFindingIdentifiersList = new ArrayList<>();
             awsSecurityFindingIdentifiersList.add(awsSecurityFindingIdentifier);
             WorkflowUpdate wu = WorkflowUpdate.builder().status(WorkflowStatus.RESOLVED).build();
             BatchUpdateFindingsRequest batchUpdateFindingsRequest = BatchUpdateFindingsRequest.builder().findingIdentifiers(awsSecurityFindingIdentifiersList).workflow(wu).build();
             shc.batchUpdateFindings(batchUpdateFindingsRequest);
-
             software.amazon.awssdk.services.securityhub.model.GetFindingsResponse updatedFindingsResponse = shc.getFindings(getFindingRequest);
             List<AwsSecurityFinding> updatedFindings = updatedFindingsResponse.findings();
 
