@@ -68,8 +68,6 @@ public class Function {
                 throw new MalformedURLException();
             } 
             System.setProperty("aws.region", "us-east-1");
-            
-            
             AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("<ClientID>>", "<ClientSecret>");            
             SecurityHubClient shc = SecurityHubClient.builder().credentialsProvider(StaticCredentialsProvider.create(awsCredentials)).build();
             StringFilter strFilter = StringFilter.builder().comparison("EQUALS").value(findingId).build();
