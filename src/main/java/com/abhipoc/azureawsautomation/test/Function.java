@@ -60,50 +60,6 @@ public class Function {
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
 
-        // // Parse query parameter
-        // final String query = request.getQueryParameters().get("name");
-        // final String name = request.getBody().orElse(query);
-        // if(name == null) {
-        //     return request.createResponseBuilder(HttpStatus.BAD_REQUEST).body("Please pass a name on the query string or in the request body").build();
-        // }
-        // String rawARN = "arn:aws:securityhub:us-east-1:498227605698:subscription/aws-foundational-security-best-practices/v/1.0.0/Config.1/finding/9eb4cadd-b8e6-4afa-96ea-c0342984f14e";
-        // String encodedARN = Base64.getEncoder().encodeToString(rawARN.getBytes());
-        // System.out.println(encodedARN);
-
-        // System.setProperty("aws.region", "us-east-1");
-        // System.out.print(System.getProperty("aws.region"));       
-        // AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("AKIAXIAFN6DBA2TRV7FC", "k6knoP4YLrkvIuvBzdWKepZFoJOz7IZ1uDIl8bVN");
-        // SecurityHubClient shc = SecurityHubClient.builder().credentialsProvider(StaticCredentialsProvider.create(awsCredentials)).build();
-        // String findingUniqueARN = "arn:aws:securityhub:us-east-1:498227605698:subscription/aws-foundational-security-best-practices/v/1.0.0/Config.1/finding/9eb4cadd-b8e6-4afa-96ea-c0342984f14e";
-        // StringFilter filter = StringFilter.builder().comparison("EQUALS").value(findingUniqueARN).build();
-        // Collection<StringFilter> listFilters = new ArrayList<>();
-        // listFilters.add(filter);
-        // AwsSecurityFindingFilters filters = AwsSecurityFindingFilters.builder().id(listFilters).build();
-        // GetFindingsRequest fro = GetFindingsRequest.builder().filters(filters).build();
-        // software.amazon.awssdk.services.securityhub.model.GetFindingsResponse findingsResponse = shc.getFindings(fro);
-        // //software.amazon.awssdk.services.securityhub.model.GetFindingsResponse findingsResponse =  shc.getFindings();    
-        // List<AwsSecurityFinding> findings =   findingsResponse.findings();
-        // Gson gson01 = new Gson();
-        // String json01 = gson01.toJson(findings);
-        // Gson gson2 = new Gson();
-        // JsonArray ja = gson2.fromJson(json01, JsonArray.class);
-        // JsonObject jo = ja.get(0).getAsJsonObject();
-        // String productArn = jo.get("productArn").getAsString();
-        // context.getLogger().info(json01);
-        // try {
-        //     AwsSecurityFindingIdentifier awsSecurityFindingIdentifier = AwsSecurityFindingIdentifier.builder().id(findingUniqueARN).productArn(productArn).build();
-        //     Collection<AwsSecurityFindingIdentifier> fi = new ArrayList<>();
-        //     fi.add(awsSecurityFindingIdentifier);
-        //     WorkflowUpdate wu = WorkflowUpdate.builder().status(WorkflowStatus.RESOLVED).build();
-        //     BatchUpdateFindingsRequest batchUpdateFindingsRequest = BatchUpdateFindingsRequest.builder().findingIdentifiers(fi).workflow(wu).build();
-        //     shc.batchUpdateFindings(batchUpdateFindingsRequest);
-            
-        // } catch(Exception e) {
-        //     context.getLogger().info(e.getMessage());
-        // }
-        
-        // return request.createResponseBuilder(HttpStatus.OK).body(json01).build();
-
         try {
             final String query = request.getQueryParameters().get("id");
             final String findingId = request.getBody().orElse(query);
@@ -117,7 +73,7 @@ public class Function {
             // String secretAccessKey = secretClient.getSecret("aws-security-account-iam-user-secretAccessKey").getValue(); 
             // context.getLogger().info(secretAccessKey);
             
-            AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("AKIAXIAFN6DBA2TRV7FC", "k6knoP4YLrkvIuvBzdWKepZFoJOz7IZ1uDIl8bVN");
+            AwsBasicCredentials awsCredentials = AwsBasicCredentials.create("<ClientID>>", "<ClientSecret>");
             
             //AwsBasicCredentials awsCredentials = AwsBasicCredentials.create(accessKeyId, secretAccessKey);
             SecurityHubClient shc = SecurityHubClient.builder().credentialsProvider(StaticCredentialsProvider.create(awsCredentials)).build();
